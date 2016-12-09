@@ -24,8 +24,9 @@ import dijkstra.model.Vertex;
 
 import dijkstra.test.TestDijkstraAlgorithm;
 
+
 public class SimpleChat extends ReceiverAdapter {
-    
+    int localAtual = 0;
     Neighborhood neig;
     Graph graph;
     DijkstraAlgorithm dijkstra;
@@ -133,7 +134,7 @@ public class SimpleChat extends ReceiverAdapter {
         dijkstra.setDistance(graph.getVertexes().get(or), graph.getVertexes().get(dest), 10);
     }
 
-    private void eventLoop() {
+    private void eventLoop() throws Exception {
         dstList.add(null);
         BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
         while(true) {
@@ -146,12 +147,13 @@ public class SimpleChat extends ReceiverAdapter {
                 }
                 else{ 
                     if(line.startsWith("#path:")){
-                        String subLinha= line.substring(6,line.length());
-                        String[] indexes = subLinha.split("/");            
-                        LinkedList<Vertex> vt = this.getPath(Integer.parseInt(indexes[0]), Integer.parseInt(indexes[1]));
+                        String destino= line.substring(6,line.length());                                    
+                        LinkedList<Vertex> vt = this.getPath(localAtual, Integer.parseInt(destino));
                         for (Vertex v: vt){
                             System.out.println(v.getName());
-                        }                      
+                        }
+                        localAtual = Integer.parseInt(destino);
+                        
                     }  
                     
                     Message msg;
@@ -160,8 +162,8 @@ public class SimpleChat extends ReceiverAdapter {
                         channel.send(msg);
                     }
                 }      
-           }catch(Exception e) {
-                System.out.println(e.toString());
+           }catch(IndexOutOfBoundsException e) {
+                System.out.println("Ponto não existente");
             }
         }
     }
