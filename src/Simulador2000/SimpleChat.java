@@ -49,17 +49,17 @@ public class SimpleChat extends ReceiverAdapter {
         }
         
         if(line.startsWith("#setCongested1:")){
-            String subLinha= line.substring(14,line.length());
+            String subLinha= line.substring(15,line.length());
             String[] indexes = subLinha.split("/");
             this.setCongested(Integer.parseInt(indexes[0]), Integer.parseInt(indexes[1]), 1);
         }
         if(line.startsWith("#setCongested2:")){
-            String subLinha= line.substring(14,line.length());
+            String subLinha= line.substring(15,line.length());
             String[] indexes = subLinha.split("/");
             this.setCongested(Integer.parseInt(indexes[0]), Integer.parseInt(indexes[1]), 2);
         }
         if(line.startsWith("#setCongested3:")){
-            String subLinha= line.substring(14,line.length());
+            String subLinha= line.substring(15,line.length());
             String[] indexes = subLinha.split("/");
             this.setCongested(Integer.parseInt(indexes[0]), Integer.parseInt(indexes[1]), 3);
         }
