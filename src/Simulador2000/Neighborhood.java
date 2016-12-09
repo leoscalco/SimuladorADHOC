@@ -47,6 +47,7 @@ public class Neighborhood {
             addLane("EF", 4, 5, 10); // e -> f
             addLane("FI", 5, 8, 10); // f -> i 
             addLane("GI", 6, 8, 10); // g -> i
+            addLane("DI", 3, 8, 10); // d -> i 
 
             // Lets check from location Loc_1 to Loc_10
             Graph graph = new Graph(nodes, edges);
