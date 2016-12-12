@@ -147,12 +147,17 @@ public class SimpleChat extends ReceiverAdapter {
                 }
                 else{ 
                     if(line.startsWith("#path:")){
-                        String destino= line.substring(6,line.length());                                    
-                        LinkedList<Vertex> vt = this.getPath(localAtual, Integer.parseInt(destino));
-                        for (Vertex v: vt){
-                            System.out.println(v.getName());
+                        String destino= line.substring(6,line.length());
+                        if(localAtual == Integer.parseInt(destino)){
+                            System.out.println(localAtual);
                         }
-                        localAtual = Integer.parseInt(destino);
+                        else{
+                            LinkedList<Vertex> vt = this.getPath(localAtual, Integer.parseInt(destino));
+                            for (Vertex v: vt){
+                                System.out.println(v.getName());
+                            }
+                            localAtual = Integer.parseInt(destino);
+                        }
                         
                     }  
                     
